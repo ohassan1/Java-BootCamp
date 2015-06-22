@@ -5,14 +5,13 @@ public class Main {
     public static void main(String[] args) {
         // oldest and youngest are initialized they way they are purposely. They will be changed.
 
-        int age[] = new int[]{32, 25, 56, 12, 20, 22, 19, 54, 22, 19, 54, 22, 72, 65, 16, 88, 4},
+        int age[] = new int[]{32, 25, 56, 12, 20, 22, 54, 19, 54, 22, 72, 65, 16, 88, 4},
                 oldest = 0, youngest = 200;
 
         int numOfKids = 0;
         int numOfAdults = 0;
         int numOfSeniors = 0;
         int dummyVariable;
-
 
         //arrays are null to be set at a later time in code
         int minor[];
@@ -22,11 +21,12 @@ public class Main {
         for (int i = 0; i < age.length; i++) {
             // Finding the oldest and youngest in the array
 
-            while (age[i] > age[i-1])
-            {
-                dummyVariable = age[i+1];
-                age[i+1] = age[i];
-                age[i] = dummyVariable;
+            for (int j = i+1; j < age.length; j++) {
+                if (age[j] < age[i]) {
+                    dummyVariable = age[j];
+                    age[j] = age[i];
+                    age[i] = dummyVariable;
+                }
             }
 
             if (oldest < age[i]) {
@@ -41,13 +41,9 @@ public class Main {
 
             if (age[i] < 18) {
                 numOfKids++;
-            }
-
-            if (age[i] < 65 && age[i] > 18) {
+            }else if (age[i] < 65 && age[i] > 18) {
                 numOfAdults++;
-            }
-
-            if (age[i] >= 65) {
+            }else if (age[i] >= 65) {
                 numOfSeniors++;
             }
         }
