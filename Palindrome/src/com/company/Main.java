@@ -3,24 +3,27 @@ package com.company;
 public class Main {
 
     public static void main(String[] args) {
-        String palindrome =  "racecar";
+        String originalString =  "racecar is a palindrome";
 
-        char[] testArray = new char[palindrome.length()];
+        // Split the string into words with the for loop
+        for (String splitString : originalString.split(" ")) {
+            // StringBuilders to allow manipulation
+            StringBuilder sb = new StringBuilder(splitString);
 
+            StringBuilder sb2 = new StringBuilder(sb);
 
-        for (int i = palindrome.length(); i > 0; i--) {
-            testArray[i-1] = palindrome.charAt(palindrome.length() - (i));
+            // Error check
+            if (sb.length() >= 2) {
+                if (String.valueOf(sb).equals(String.valueOf(sb2.reverse()))) {
+                    System.out.println("'" + sb + "'" + " IS A PALINDROME!");
+                } else {
+                    System.out.println("Nah Fam, " + "'" + sb + "'" + " is a regular word");
+                }
+            } else {
+                System.out.println("Nah fam, you need at least 2 letters for palindrome");
+            }
+
+            System.out.println(" ");
         }
-
-        String reverse = new String(testArray);
-
-        if (palindrome.equals(reverse))
-        {
-            System.out.println("This is a palindrome!!!!");
-        } else {
-            System.out.println("This is not a palindrome :((((");
-        }
-
-
     }
 }
